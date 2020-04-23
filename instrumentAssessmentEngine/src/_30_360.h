@@ -1,0 +1,14 @@
+//
+// Created by axxa on 11/4/20.
+//
+
+#ifndef INSTRUMENTASSESSMENTENGINE__30_360_H
+#define INSTRUMENTASSESSMENTENGINE__30_360_H
+
+
+class _30_360 {
+
+};
+
+
+#endif //INSTRUMENTASSESSMENTENGINE__30_360_H
