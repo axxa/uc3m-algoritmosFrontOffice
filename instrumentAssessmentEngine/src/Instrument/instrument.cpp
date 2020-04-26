@@ -1,20 +1,18 @@
 //
 // Created by axxa on 11/4/20.
 //
-
+#include <iostream>
 #include "instrument.h"
-#include <InstrumentFactory.h>
 
-void Instrument::buildInstrument( std::string type, ...)
+Instrument::Instrument( int type)
 {
-    InstrumentFactory myInstrumentFactory;
-    std::unique_ptr<Instrument> instrument;
-    if (type == "swap")
+    std::cout<<"aca instrument";
+    if (type == 1)
     {
-        instrument = myInstrumentFactory.buildSwap(type);
+        this->instrumentDescription = new InstrumentDescription(InstrumentDescription::swap);
     }
-    else if (type == "bond")
+    else if (type == 2)
     {
-        instrument = myInstrumentFactory.createBond(...);
+        this->instrumentDescription = new InstrumentDescription(InstrumentDescription::bond);
     }
 }

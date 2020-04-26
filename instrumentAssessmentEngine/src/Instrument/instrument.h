@@ -8,11 +8,14 @@
 
 #include <iostream>
 
+#include "instrument_description.cpp"
+
 class Instrument {
     public:
-    std::string type;
+        Instrument(int type);
+    private:
+        InstrumentDescription *instrumentDescription;
 
-    void buildInstrument( std::string type, ...);
 };
 
 

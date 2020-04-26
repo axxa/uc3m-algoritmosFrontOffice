@@ -7,8 +7,9 @@
 
 
 #include <index.h>
+#include "leg.h"
 
-class FloatingLeg {
+class FloatingLeg :public leg{
 public:
     FloatingLeg(struct Index index);
 };

@@ -5,8 +5,9 @@
 #ifndef UC3M_ALGORITMOSFRONTOFFICE_FIXEDLEG_H
 #define UC3M_ALGORITMOSFRONTOFFICE_FIXEDLEG_H
 
+#include "leg.h"
 
-class FixedLeg {
+class FixedLeg :public leg{
 
 };
 

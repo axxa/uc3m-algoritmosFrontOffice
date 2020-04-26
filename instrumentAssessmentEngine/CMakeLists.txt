@@ -10,6 +10,8 @@ set(INCLUDE_HOME ${PROJECT_SOURCE_DIR}/src)
 set (CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-lib)
 # - set boost home
 set(BOOST_ROOT /home/boost_1_66_0)
+# - set TODO FIX
+#set (CMAKE_TEST ${PROJECT_SOURCE_DIR}/src)
 
 # Print some stuff
 message("--> CMake extra functions: " ${CMAKE_MODULE_PATH})
@@ -19,7 +21,10 @@ message("--> Include base path: " ${INCLUDE_HOME})
 # 2. Load in-house cmake modules
 message("--> Loading CMake modules: ")
 #include(${CMAKE_MODULE_PATH}/CMakeBoostTest.cmake)
+#include(${CMAKE_MODULE_PATH}/CMakeAuxFunctions.cmake)
 include(${CMAKE_MODULE_PATH}/CMakeAuxFunctions.cmake)
+# TODO FIX
+#include(${CMAKE_TEST}/CMakeLists.txt)
 
 # 3. Set CMake environment
 # - Set folders

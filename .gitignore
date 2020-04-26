@@ -33,7 +33,7 @@
 
 #MISC
 */build
-*/cmake-build-debug
+**/cmake-build-debug
 # IDEs and editors
 /.idea
 */.idea

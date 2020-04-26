@@ -6,7 +6,7 @@
 #define INSTRUMENTASSESSMENTENGINE_SWAP_H
 
 
-#include <bits/unique_ptr.h>
+#include <memory>
 #include "fixed_leg.h"
 #include "floating_leg.h"
 #include "instrument.h"
