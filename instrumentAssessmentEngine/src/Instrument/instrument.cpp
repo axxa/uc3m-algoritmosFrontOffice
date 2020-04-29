@@ -4,7 +4,7 @@
 #include <iostream>
 #include "instrument.h"
 
-Instrument::Instrument( int type)
+Instrument::Instrument(int type)
 {
     std::cout<<"aca instrument";
     if (type == 1)

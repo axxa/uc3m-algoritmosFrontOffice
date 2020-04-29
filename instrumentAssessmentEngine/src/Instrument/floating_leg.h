@@ -8,11 +8,11 @@
 
 #include <index.h>
 #include "leg.h"
-
+/*
 class FloatingLeg :public leg{
 public:
     FloatingLeg(struct Index index);
 };
 
-
+*/
 #endif //UC3M_ALGORITMOSFRONTOFFICE_FLOATINGLEG_H

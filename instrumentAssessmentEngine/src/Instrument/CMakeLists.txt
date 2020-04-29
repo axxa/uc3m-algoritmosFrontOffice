@@ -1,4 +1,4 @@
 #add_subdirectory(tests)
-#create_library(NAME Instrument)
+create_library(NAME Instrument)
 
-# add_executable(Instrument bond.cpp)
+#add_executable(Instrument instrument.cpp)

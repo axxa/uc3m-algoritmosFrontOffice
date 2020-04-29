@@ -3,7 +3,8 @@
 //
 
 #include "floating_leg.h"
-
+/*
 FloatingLeg::FloatingLeg(struct Index index) {
 
 }
+*/

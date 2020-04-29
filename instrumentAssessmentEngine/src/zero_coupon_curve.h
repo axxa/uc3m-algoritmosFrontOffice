@@ -7,12 +7,12 @@
 
 
 #include <bits/unique_ptr.h>
-
+/*
 class ZerocouponCurve {
 public:
     ZerocouponCurve();
 
 };
 
-
+*/
 #endif //UC3M_ALGORITMOSFRONTOFFICE_ZEROCOUPONCURVE_H

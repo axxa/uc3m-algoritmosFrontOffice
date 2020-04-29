@@ -14,7 +14,7 @@
 class Swap :public Instrument{
 
 public:
-    Swap(std::unique_ptr<FixedLeg> &, std::unique_ptr<FloatingLeg> &);
+    explicit Swap( int type);
     //std::unique_ptr<ZerocouponCurve> & zcc
 };
 

@@ -4,7 +4,6 @@
 
 #include "swap.h"
 
-
-Swap::Swap(std::unique_ptr<FixedLeg> & fxl, std::unique_ptr<FloatingLeg> & fl){
-
+Swap::Swap(int type) : Instrument(type) {
+    std::cout<<"aca swap";
 }
