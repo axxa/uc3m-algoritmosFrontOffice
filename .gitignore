@@ -34,6 +34,7 @@
 #MISC
 */build
 **/cmake-build-debug
+**/cmakecompilation
 # IDEs and editors
 /.idea
 */.idea
