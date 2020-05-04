@@ -6,14 +6,16 @@
 #define INSTRUMENTASSESSMENTENGINE_BOND_H
 #include "instrument.h"
 #include <iostream>
-/*
+
 class Bond: public Instrument{
-//class Bond{
+
     public:
-        explicit Bond( int type) : Instrument(type) {
-            std::cout<<"aca bond";
-        }//: Instrument(static_cast<Instrument>(type)){}
+        explicit Bond( std::string type);
+    private:
+        double capitalInicial;
+        int zeroCoupon;
+
 };
-*/
+
 
 #endif //INSTRUMENTASSESSMENTENGINE_BOND_H

@@ -12,7 +12,7 @@
 
 class Instrument {
     public:
-        Instrument(int type);
+        Instrument(std::string type);
     private:
         InstrumentDescription *instrumentDescription;
 

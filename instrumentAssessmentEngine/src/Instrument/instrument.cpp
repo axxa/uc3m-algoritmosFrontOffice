@@ -4,14 +4,14 @@
 #include <iostream>
 #include "instrument.h"
 
-Instrument::Instrument(int type)
+Instrument::Instrument(std::string type)
 {
-    std::cout<<"aca instrument";
-    if (type == 1)
+    std::cout<<"aca instrument\n";
+    if (type == "swap")
     {
         this->instrumentDescription = new InstrumentDescription(InstrumentDescription::swap);
     }
-    else if (type == 2)
+    else if (type == "bond")
     {
         this->instrumentDescription = new InstrumentDescription(InstrumentDescription::bond);
     }

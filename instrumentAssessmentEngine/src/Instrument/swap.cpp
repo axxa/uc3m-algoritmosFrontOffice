@@ -4,6 +4,6 @@
 
 #include "swap.h"
 
-Swap::Swap(int type) : Instrument(type) {
+Swap::Swap(std::string type) : Instrument(type) {
     std::cout<<"aca swap";
 }

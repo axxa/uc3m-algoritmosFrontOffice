@@ -14,7 +14,7 @@
 class Swap :public Instrument{
 
 public:
-    explicit Swap( int type);
+    explicit Swap( std::string type);
     //std::unique_ptr<ZerocouponCurve> & zcc
 };
 

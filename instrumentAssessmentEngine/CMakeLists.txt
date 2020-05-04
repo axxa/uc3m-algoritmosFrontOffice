@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(instrumentAssessmentEngine)
-
+project(instrumentAssessmentEngine CXX)
 # 1. Define some well-known folders:
 # - Place for compile binaries
 set(CMAKE_BINARY_DIR ${PROJECT_SOURCE_DIR}/build)
