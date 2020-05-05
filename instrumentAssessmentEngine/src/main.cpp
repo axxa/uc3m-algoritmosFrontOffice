@@ -20,6 +20,7 @@ void testBondActual360(){
     double nominal = 1000;
     vector<std::tm> fechasPagoZeroCoupon;
     vector<std::string> fechasZeroCouponString{"01/01/2019", "01/01/2020", "01/01/2021"};
+    double interesFijoAnual = 0.2;
 
     //-----------construir la curva cero cupon--------------------------------------------------------
     auto actual = Actual_360();
@@ -35,6 +36,8 @@ void testBondActual360(){
     for (int i = 0; i < fechasPagoZeroCoupon.size(); ++i) {
         zcc.addZeroCoupon(fechasPagoZeroCoupon[i], tiposZeroCoupon[i], actual);
     }
+
+    Bond bond("bond", nominal, zcc, fechasPagoZeroCoupon, interesFijoAnual);
 
     //------------------------------------------------------------------------------------------------
 

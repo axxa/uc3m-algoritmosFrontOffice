@@ -16,12 +16,12 @@ class ZeroCoupon
         double yearCount;
         double forward;
         std::tm fechaFinal;
-        double interest;
+        double interesAnual;
     public:
         ZeroCoupon( double yearCount, std::tm fechaFinal, double interest){
             cout<<"Constructor ZeroCoupon\n";
             this->fechaFinal = fechaFinal;
-            this->interest = interest;
+            this->interesAnual = interest;
             this->yearCount = yearCount;
         };
         void setForward(double timeInYearsBefore, double interestRateBefore, double numOfPeriodsPerYear, int actualPeriod);

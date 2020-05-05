@@ -6,6 +6,7 @@
 #define UC3M_ALGORITMOSFRONTOFFICE_ZEROCOUPONCURVE_H
 
 
+#include <vector>
 #include "PeriodCalc/Actual_360.h"
 #include "zero_coupon.h"
 
