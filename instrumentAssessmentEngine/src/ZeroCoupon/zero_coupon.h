@@ -7,27 +7,33 @@
 
 #include <ctime>
 #include <iostream>
+#include <math.h>
+
 #include "PeriodCalc/Actual_360.h"
+
 using namespace std;
 
 class ZeroCoupon
 {
     private:
-        double yearCount;
-        double forward;
         std::tm fechaFinal;
-        double interesAnual;
+        std::tm fechaInicial;
+        double interest;
+        double maturity;
+        double price;
     public:
-        ZeroCoupon( double yearCount, std::tm fechaFinal, double interest){
+        ZeroCoupon( double maturity, double interest){
             cout<<"Constructor ZeroCoupon\n";
-            this->fechaFinal = fechaFinal;
-            this->interesAnual = interest;
-            this->yearCount = yearCount;
+            this->maturity = maturity;
+            this->interest = interest;
         };
-        void setForward(double timeInYearsBefore, double interestRateBefore, double numOfPeriodsPerYear, int actualPeriod);
-        double getInterest();
-        double getForward();
-        double getTime();
+        void pricer(double c){
+            auto df = exp((-1) * interest * maturity);
+            this->price = c * df;
+        }
+        double getPrice(){
+            return price;
+        }
 };
 
 

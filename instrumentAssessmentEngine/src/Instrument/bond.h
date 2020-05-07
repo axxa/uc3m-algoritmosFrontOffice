@@ -15,16 +15,16 @@ using namespace std;
 class Bond: public Instrument{
 
     public:
-        //explicit Bond(double nominal, std::tm fechaFinal,ZeroCoupon &zeroCoupon, std::string type);
-        explicit Bond(std::string type, double nominal, ZerocouponCurve &zcc, std::vector<std::tm> pagos,
-                      double interesFijoAnual);
-        void buildLegs();
+        explicit Bond(std::string type, double nominal, ZerocouponCurve &zcc, double interesFijoAnual);
+        void pricer();
+        double getPresentValue();
     private:
         double nominal;
         tm fechaPresente;
         tm fechaFinal;
         ZerocouponCurve *zcc;
-        vector<leg> legs;
+        double pv;
+        double interesFijoAnual;
 
 };
 

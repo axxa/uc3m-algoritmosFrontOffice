@@ -28,6 +28,9 @@ public:
     {
         return compute_daycount(start, end)/ 360.0;
     }
+    short dias_anio(){
+        return 360;
+    }
 
 };
 
