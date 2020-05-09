@@ -22,12 +22,12 @@ class ZeroCoupon
         double price;
     public:
         ZeroCoupon( double maturity, double interest,std::tm fechaPago){
-            cout<<"Constructor ZeroCoupon\n";
             this->maturity = maturity;
             this->interest = interest;
+            this->fechaPago = fechaPago;
         };
         void pricer(double c){
-            cout<< "\n coupon = C * DF :: C=" << c << " DF= exp(-" << interest << "*" << maturity<<")\n";
+            cout<< "coupon = C * DF :: C=" << c << " DF= exp(-" << interest << "*" << maturity<<")\n";
             auto df = exp((-1) * interest * maturity);
             this->price = c * df;
         }

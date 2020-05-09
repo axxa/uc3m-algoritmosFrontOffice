@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
-project(instrumentAssessmentEngine CXX)
+project(instrumentAssessmentEngine)
+
 # 1. Define some well-known folders:
 # - Place for compile binaries
 set(CMAKE_BINARY_DIR ${PROJECT_SOURCE_DIR}/build)
@@ -37,6 +38,9 @@ set(CXX_FILE_EXTENSIONS "*.h"  "*.cpp")
 # 4. Set Compilation environment
 include_directories(${INCLUDE_HOME})
 add_definitions(-std=gnu++14)
+
+# include the cmake modules directory
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 # 5. Add subdirs
 add_subdirectory(src)

@@ -4,15 +4,14 @@
 
 #include "bond.h"
 
-Bond::Bond(std::string type, double nominal, ZerocouponCurve<Actual_360> &zcc, double interesFijoAnual) : Instrument(type) {
-    std::cout<<"aca bond";
+/*Bond::Bond(std::string type, double nominal, ZerocouponCurve<Actual_360> &zcc, double interesFijoAnual) : Instrument(type) {
     this->zcc=&zcc;
     this->nominal=nominal;
     this->fechaPresente=fechaPresente;
     this->fechaFinal=fechaFinal;
     this->interesFijoAnual = interesFijoAnual;
-}
-
+}*/
+/*
 void Bond::pricer() {
     auto maturity_gap = this->zcc->getMaturityGap();
     std::vector<ZeroCoupon> zcv = this->zcc->getVectorZeroCoupon();
@@ -24,8 +23,8 @@ void Bond::pricer() {
         zcv[i].pricer(c);
         this->pv += zcv[i].getPrice();
     }
-}
-
+}*/
+/*
 double Bond::getPresentValue() {
     return this->pv;
-}
+}*/

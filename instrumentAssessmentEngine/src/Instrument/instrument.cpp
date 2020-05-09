@@ -6,7 +6,6 @@
 
 Instrument::Instrument(std::string type)
 {
-    std::cout<<"aca instrument\n";
     if (type == "swap")
     {
         this->instrumentDescription = new InstrumentDescription(InstrumentDescription::swap);

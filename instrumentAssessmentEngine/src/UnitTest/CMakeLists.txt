@@ -1,1 +1,1 @@
-create_library(NAME mytest)
+create_library(NAME UnitTest)
