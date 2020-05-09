@@ -29,16 +29,14 @@ void testBondActual360(){
 
     //-----------construir la curva cero cupon--------------------------------------------------------
     auto convencion_360 = Actual_360();
-    std::tm fechaPresente = convencion_360.make_date(fechainicial);
     for (auto element : fechasZeroCouponString)
         fechasPagoZeroCoupon.push_back(convencion_360.make_date(element));
-
-    ZerocouponCurve zcc(convencion_360, fechasPagoZeroCoupon, tiposZeroCoupon);
-
+    ZerocouponCurve<Actual_360> zcc(convencion_360, fechasPagoZeroCoupon, tiposZeroCoupon);
+    //------------------------------------------------------------------------------------------------
 
     Bond bond("bond", nominal, zcc, interesFijoAnual);
     bond.pricer();
-    cout<< bond.getPresentValue() << "....asdadsa";
+    cout<< "\nEl valor presente del bono es:" <<bond.getPresentValue() <<"\n";
 
     //cout << "a:" << spline(2018);
     //------------------------------------------------------------------------------------------------

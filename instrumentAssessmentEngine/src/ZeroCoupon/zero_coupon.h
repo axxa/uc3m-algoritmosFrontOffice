@@ -16,23 +16,26 @@ using namespace std;
 class ZeroCoupon
 {
     private:
-        std::tm fechaFinal;
-        std::tm fechaInicial;
+        std::tm fechaPago;
         double interest;
         double maturity;
         double price;
     public:
-        ZeroCoupon( double maturity, double interest){
+        ZeroCoupon( double maturity, double interest,std::tm fechaPago){
             cout<<"Constructor ZeroCoupon\n";
             this->maturity = maturity;
             this->interest = interest;
         };
         void pricer(double c){
+            cout<< "\n coupon = C * DF :: C=" << c << " DF= exp(-" << interest << "*" << maturity<<")\n";
             auto df = exp((-1) * interest * maturity);
             this->price = c * df;
         }
         double getPrice(){
             return price;
+        }
+        std::tm getFechaPago(){
+            return fechaPago;
         }
 };
 
