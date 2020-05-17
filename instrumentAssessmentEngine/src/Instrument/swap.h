@@ -32,7 +32,14 @@ public:
                 c+=nominal;
             }
             zcv[i].pricer(c);
+            if(i>0){
+                zcv[i].v_pricer(c,1/maturity_gap,zcv[i-1].getInterest(),i+1);
+            }
+            else{
+                zcv[i].v_pricer(c,1/maturity_gap,0.048,i+1);
+            }
             this->pv += zcv[i].getPrice();
+            this->pv -= zcv[i].getVPrice();
         }
     }
     double getPresentValue(){
@@ -45,6 +52,7 @@ public:
         ZerocouponCurve<T> *zcc;
         double pv;
         double interesFijoAnual;
+
 };
 
 

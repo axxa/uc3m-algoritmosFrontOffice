@@ -9,6 +9,7 @@
 #include "PeriodCalc/_30_360.h"
 #include "PeriodCalc/Actual_actual.h"
 #include "Instrument/bond.h"
+#include "Instrument/swap.h"
 #include <iostream>
 #include <ctime>
 #include <string>
@@ -41,6 +42,30 @@ public:
         Bond<Actual_360> bond("bond", nominal, zcc, interesFijoAnual);
         bond.pricer();
         return bond.getPresentValue();
+    }
+
+    double testTema2Swap(){
+        //Datos basicos del bono-------------------------------------------------------
+        vector<std::string> fechasZeroCouponString{"03/10/2016", "03/04/2017", "02/10/2017","02/04/2018"};
+        vector<double> tiposZeroCoupon{0.0474, 0.05, 0.051, 0.052};
+        double interesFijoAnual = 0.05;
+        double nominal = 100;
+        //---------------------------------------------------------------------
+
+        std::string fechainicial = fechasZeroCouponString[0];
+        std::string fechafinal = fechasZeroCouponString[fechasZeroCouponString.size()-1];
+        vector<std::tm> fechasPagoZeroCoupon;
+
+        //-----------construir la curva cero cupon--------------------------------------------------------
+        auto convencion_360 = Actual_360();
+        for (auto element : fechasZeroCouponString)
+            fechasPagoZeroCoupon.push_back(convencion_360.make_date(element));
+        ZerocouponCurve<Actual_360> zcc(convencion_360, fechasPagoZeroCoupon, tiposZeroCoupon);
+        //------------------------------------------------------------------------------------------------
+
+        Swap<Actual_360> swap("swap", nominal, zcc, interesFijoAnual);
+        swap.pricer();
+        return swap.getPresentValue();
     }
 
     double testBondActualActual(){

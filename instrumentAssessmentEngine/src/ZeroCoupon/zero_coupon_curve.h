@@ -33,7 +33,7 @@ class ZerocouponCurve {
         double getMaturityGap(){
             return maturityGap;
         }
-        Actual_360 getConvencion(){
+        T getConvencion(){
             return convencion;
         }
     private:
