@@ -21,6 +21,7 @@ class ZerocouponCurve {
             calculate_maturity_gap();
             auto maturity_acum = maturityGap;
             int i = 0;
+            computeDayCountByPeriod();
             for (auto element : tiposZeroCoupon) {
                 addZeroCoupon(maturity_acum, element, fechasPagoZeroCoupon[i]);
                 maturity_acum += maturityGap;
@@ -28,7 +29,10 @@ class ZerocouponCurve {
             }
         };
         std::vector<ZeroCoupon> getVectorZeroCoupon(){
-            return vectorZeroCoupon;
+            return this->vectorZeroCoupon;
+        }
+        std::vector<ZeroCoupon> *getZc() const {
+            return this->vectorZeroCoupon;
         }
         double getMaturityGap(){
             return maturityGap;
@@ -36,11 +40,18 @@ class ZerocouponCurve {
         T getConvencion(){
             return convencion;
         }
+        vector<int> getDayCountByPeriod(){
+            return dayCountByPeriod;
+        }
+        vector<std::tm> getFechasPagoZeroCoupon(){
+            return fechasPagoZeroCoupon;
+        }
     private:
         T convencion;
         std::tm fechaInicial;
         std::vector<ZeroCoupon> vectorZeroCoupon;
         vector<std::tm> fechasPagoZeroCoupon;
+        vector<int> dayCountByPeriod;
         double maturityGap;
         void addZeroCoupon(double maturity, double interest, std::tm fechaPago)
         {
@@ -52,6 +63,12 @@ class ZerocouponCurve {
             auto daycount = convencion.compute_daycount_by_convention(fechasPagoZeroCoupon[0], fechasPagoZeroCoupon[periodos_pago]);
             double total_maturity = (double) daycount / convencion.dias_anio();
             maturityGap = total_maturity / periodos_pago;
+        }
+        void computeDayCountByPeriod(){
+            for(int i = 1 ; i <fechasPagoZeroCoupon.size(); i++){
+                dayCountByPeriod.push_back(convencion.compute_daycount_by_convention(fechasPagoZeroCoupon[i-1],
+                        fechasPagoZeroCoupon[i]));
+            }
         }
 
 

@@ -23,6 +23,7 @@ class Bond: public Instrument{
             this->fechaFinal=fechaFinal;
             this->interesFijoAnual = interesFijoAnual;
         }
+        ~Bond(){}
         void pricer(){
             auto maturity_gap = this->zcc->getMaturityGap();
             std::vector<ZeroCoupon> zcv = this->zcc->getVectorZeroCoupon();
@@ -32,17 +33,27 @@ class Bond: public Instrument{
                     c+=nominal;
                 }
                 zcv[i].pricer(c);
+                this->prices.push_back(zcv[i].getPrice());
                 this->pv += zcv[i].getPrice();
             }
         }
         double getPresentValue(){
             return this->pv;
         }
+        /*vector<std::tm> getZeroCouponCurve(){
+            vector<std::tm> fechasPagoZeroCoupon = this->zcc->getFechasPagoZeroCoupon();
+            return fechasPagoZeroCoupon;
+
+        }*/
+        vector<double> getPrices(){
+            return this->prices;
+        }
     private:
         double nominal;
         tm fechaPresente;
         tm fechaFinal;
         ZerocouponCurve<T> *zcc;
+        vector<double> prices;
         double pv;
         double interesFijoAnual;
 

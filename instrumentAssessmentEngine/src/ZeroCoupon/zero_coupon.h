@@ -34,14 +34,36 @@ class ZeroCoupon
             cout<< "coupon = C * DF :: C=" << c << " DF= exp(-" << interest << "*" << maturity<<")= "
             << this->price <<"\n";
         }
-        void v_pricer(double c, int periodos_anio, double interestRateBefore, int actualPeriod){
-            auto df = exp((-1) * interest * maturity);
+        void v_pricer(double dcf, int periodos_anio, double interestRateBefore, int actualPeriod,
+                double nominal, double interesFijo, double dayCountFractionAcumulado){
             double RF = (this->interest*actualPeriod - interestRateBefore*(actualPeriod-1));
             double tipo_flotante = (periodos_anio * (exp(RF/periodos_anio) - 1));
-            this->v_price = c * tipo_flotante;
-            //cout<<"flotante:\n";
-            cout<<"tipo_flotante=" << tipo_flotante;
+            double fixedFlow = interesFijo * dcf * nominal;
+            double floatingFlow = dcf * tipo_flotante * nominal;
+            double discountFactor = exp(-dayCountFractionAcumulado * interest);
+            //cout << "discountFactor: " << "exp(-" << dcf << "*" << interest << "\n";
+            cout << "floatingFlow "<< floatingFlow<< "::interesFlotante:" << tipo_flotante<<"\n";
+                 //<< " dcf: "<< dcf << " nominal:" << nominal << " discountFactor: " << discountFactor <<"\n";
+            this->v_price = (fixedFlow-floatingFlow) *  discountFactor;
+
+            cout << "fixedFlow "<< fixedFlow<< "\n";
         }
+        /*
+         * void v_pricer(double dcf, int periodos_anio, double interestRateBefore, int actualPeriod,
+                double nominal, double interesFijo, double dayCountFractionAcumulado){
+            double RF = (this->interest*actualPeriod - interestRateBefore*(actualPeriod-1));
+            double tipo_flotante = (periodos_anio * (exp(RF/periodos_anio) - 1));
+            double fixedFlow = interesFijo * dcf * nominal;
+            double floatingFlow = dcf * tipo_flotante * nominal;
+            double discountFactor = exp(-dcf * interest);
+            cout << "discountFactor: " << "exp(-" << dcf << "*" << interest << "\n";
+            cout << "floatingFlow "<< floatingFlow<< "::interesFlotante:" << tipo_flotante
+                 << " dcf: "<< dcf << " nominal:" << nominal << " discountFactor: " << discountFactor <<"\n";
+            this->v_price = (fixedFlow-floatingFlow) *  discountFactor;
+
+            cout << "fixedFlow "<< fixedFlow<< "\n";
+        }
+         * */
         double getPrice(){
             return price;
         }

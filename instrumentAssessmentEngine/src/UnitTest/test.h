@@ -20,7 +20,7 @@ public:
     Test(int a){
         std::cout<< "Unit Test\n";
     }
-    double testTema2(){
+    Bond<Actual_360> testTema2(){
         //Datos basicos del bono-------------------------------------------------------
         vector<std::string> fechasZeroCouponString{"01/01/2019", "31/06/2019", "01/01/2020","31/06/2020"};
         vector<double> tiposZeroCoupon{0.05, 0.058, 0.064, 0.068};
@@ -41,29 +41,33 @@ public:
 
         Bond<Actual_360> bond("bond", nominal, zcc, interesFijoAnual);
         bond.pricer();
-        return bond.getPresentValue();
+        return bond;
     }
 
     double testTema2Swap(){
         //Datos basicos del bono-------------------------------------------------------
+        //vector<std::string> fechasZeroCouponString{"01/04/2016","03/10/2016", "03/04/2017", "02/10/2017","02/04/2018"};
+        //vector<double> tiposZeroCoupon{0.048,0.0474, 0.05, 0.051, 0.052};
         vector<std::string> fechasZeroCouponString{"03/10/2016", "03/04/2017", "02/10/2017","02/04/2018"};
         vector<double> tiposZeroCoupon{0.0474, 0.05, 0.051, 0.052};
+        double euriborEnReset = 0.48;
         double interesFijoAnual = 0.05;
         double nominal = 100;
         //---------------------------------------------------------------------
 
-        std::string fechainicial = fechasZeroCouponString[0];
+
         std::string fechafinal = fechasZeroCouponString[fechasZeroCouponString.size()-1];
         vector<std::tm> fechasPagoZeroCoupon;
 
         //-----------construir la curva cero cupon--------------------------------------------------------
         auto convencion_360 = Actual_360();
+        std::tm fechainicial = convencion_360.make_date("01/04/2016");
         for (auto element : fechasZeroCouponString)
             fechasPagoZeroCoupon.push_back(convencion_360.make_date(element));
         ZerocouponCurve<Actual_360> zcc(convencion_360, fechasPagoZeroCoupon, tiposZeroCoupon);
         //------------------------------------------------------------------------------------------------
 
-        Swap<Actual_360> swap("swap", nominal, zcc, interesFijoAnual);
+        Swap<Actual_360> swap("swap", nominal, zcc, interesFijoAnual, fechainicial, euriborEnReset);
         swap.pricer();
         return swap.getPresentValue();
     }
