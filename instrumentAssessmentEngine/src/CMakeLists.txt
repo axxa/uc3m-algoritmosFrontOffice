@@ -6,6 +6,8 @@ add_subdirectory(PeriodCalc)
 add_subdirectory(ZeroCoupon)
 add_subdirectory(Instrument)
 add_subdirectory(Tir)
+
+add_subdirectory(Calibracion)
 add_subdirectory(UnitTest)
 
 #buscar para agregar dependencia a una libreria
@@ -15,6 +17,8 @@ set_target_properties(Instrument PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(PeriodCalc PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(UnitTest PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(Tir PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(Calibracion PROPERTIES LINKER_LANGUAGE CXX)
+
 
 target_link_libraries(instrumentAssessmentEngine Instrument)
 

@@ -8,8 +8,12 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+
 #include "PeriodCalc/Actual_360.h"
 #include "zero_coupon.h"
+#include "Calibracion/interpolacionLineal.h"
+
+using namespace std;
 
 template <class T>
 class ZerocouponCurve {
@@ -21,13 +25,30 @@ class ZerocouponCurve {
             calculate_maturity_gap();
             auto maturity_acum = maturityGap;
             int i = 0;
+            vector<double> numericTime;
             computeDayCountByPeriod();
             for (auto element : tiposZeroCoupon) {
                 addZeroCoupon(maturity_acum, element, fechasPagoZeroCoupon[i]);
                 maturity_acum += maturityGap;
+
+                //auto yearcount = convencion.compute_daycount_by_convention(this->fechaInicial,this->vectorZeroCoupon[i].getFechaPago()) / convencion.dias_anio();
+                numericTime.push_back(maturity_acum);
+
                 i++;
             }
-        };
+
+            this->calibrada = InterpolacionLineal(numericTime, tiposZeroCoupon);
+            /*
+            // Output
+            #define SP << fixed << setw( 15 ) << setprecision( 6 ) <<
+            #define NL << '\n'
+            auto xVals = this->calibrada.getInterpolatedMaturityVector();
+            auto yVals = this->calibrada.getInterpolatedInterestVector();
+            cout << "\nInterpolated data:\n";
+            for ( int i = 0; i < this->calibrada.getInterpolatedMaturityVector().size(); i++ ) cout SP xVals[i] SP yVals[i] NL;*/
+
+        }
+
         std::vector<ZeroCoupon> getVectorZeroCoupon(){
             return this->vectorZeroCoupon;
         }
@@ -46,6 +67,9 @@ class ZerocouponCurve {
         vector<std::tm> getFechasPagoZeroCoupon(){
             return fechasPagoZeroCoupon;
         }
+        InterpolacionLineal getCalibrada(){
+            return this->calibrada;
+        }
     private:
         T convencion;
         std::tm fechaInicial;
@@ -53,6 +77,8 @@ class ZerocouponCurve {
         vector<std::tm> fechasPagoZeroCoupon;
         vector<int> dayCountByPeriod;
         double maturityGap;
+        InterpolacionLineal calibrada;
+
         void addZeroCoupon(double maturity, double interest, std::tm fechaPago)
         {
             ZeroCoupon zc(maturity, interest, fechaPago);

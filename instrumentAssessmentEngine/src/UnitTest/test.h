@@ -10,10 +10,12 @@
 #include "PeriodCalc/Actual_actual.h"
 #include "Instrument/bond.h"
 #include "Instrument/swap.h"
+#include "Tir/tir.h"
 #include <iostream>
 #include <ctime>
 #include <string>
 #include <vector>
+#include "utils.h"
 
 class Test {
 public:
@@ -41,6 +43,12 @@ public:
 
         Bond<Actual_360> bond("bond", nominal, zcc, interesFijoAnual);
         bond.pricer();
+
+
+        auto xVals = zcc.getCalibrada().getInterpolatedMaturityVector();
+        auto yVals = zcc.getCalibrada().getInterpolatedInterestVector();
+        utils u(1);
+        u.showTimeSeries(xVals, yVals);
         return bond;
     }
 
@@ -69,6 +77,12 @@ public:
 
         Swap<Actual_360> swap("swap", nominal, zcc, interesFijoAnual, fechainicial, euriborEnReset);
         swap.pricer();
+
+        auto xVals = zcc.getCalibrada().getInterpolatedMaturityVector();
+        auto yVals = zcc.getCalibrada().getInterpolatedInterestVector();
+        utils u(1);
+        u.showTimeSeries(xVals, yVals);
+
         return swap.getPresentValue();
     }
 
@@ -145,6 +159,38 @@ public:
         Bond<_30_360> bond("bond", nominal, zcc, interesFijoAnual);
         bond.pricer();
         return bond.getPresentValue();
+
+    }
+
+    double testTir(){
+        //Datos basicos del bono-------------------------------------------------------
+        vector<std::string> fechasZeroCouponString{"01/01/2019", "31/06/2019", "01/01/2020","31/06/2020"};
+        vector<double> tiposZeroCoupon{0.05, 0.058, 0.064, 0.068};
+        double interesFijoAnual = 0.06;
+        double nominal = 100;
+        //---------------------------------------------------------------------
+
+        std::string fechainicial = fechasZeroCouponString[0];
+
+        std::string fechafinal = fechasZeroCouponString[fechasZeroCouponString.size()-1];
+        vector<std::tm> fechasPagoZeroCoupon;
+
+        //-----------construir la curva cero cupon--------------------------------------------------------
+        auto convencion_360 = Actual_360();
+        for (auto element : fechasZeroCouponString)
+            fechasPagoZeroCoupon.push_back(convencion_360.make_date(element));
+        ZerocouponCurve<Actual_360> zcc(convencion_360, fechasPagoZeroCoupon, tiposZeroCoupon);
+        //------------------------------------------------------------------------------------------------
+
+        Bond<Actual_360> bond("bond", nominal, zcc, interesFijoAnual);
+        bond.pricer();
+
+        std::tm fechaReset = convencion_360.make_date(fechainicial);
+        vector<double> prices = bond.getPrices();
+        Tir<Actual_360> tir = Tir<Actual_360>(convencion_360, fechasPagoZeroCoupon,fechaReset,prices);
+        tir.setMarketValue(bond.getPresentValue());
+
+        return tir.computeTir(0, 10);
 
     }
 };

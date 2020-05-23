@@ -25,6 +25,7 @@ public:
             this->interesFijoAnual = interesFijoAnual;
             this->interesEnReset = interesEnReset;
     }
+    ~Swap(){}
     void pricer(){
         auto maturity_gap = this->zcc->getMaturityGap();
         T convencion = this->zcc->getConvencion();
