@@ -8,3 +8,28 @@ PARA RUN
 	axxa@axxa:~/Documents/DEV/git/uc3m-algoritmosFrontOffice/instrumentAssessmentEngine/build$ 
 	
 	./instrumentAssessmentEngine 
+
+
+Dialog Tests
+
+Bond
+
+1
+31/06/2018
+01/01/2019,31/06/2019,01/01/2020,31/06/2020
+0.05,0.058,0.064,0.068
+0.06
+100
+2
+
+
+Swap
+
+2
+03/10/2016,03/04/2017,02/10/2017,02/04/2018
+01/04/2016
+0.0474,0.05,0.051,0.052
+0.05
+0.48
+100
+2
