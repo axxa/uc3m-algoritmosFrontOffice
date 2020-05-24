@@ -38,7 +38,7 @@ void justOne(){
 
 int main() {
     //justOne();
-    //runTest();
-    Dialogo d(1);
+    runTest();
+    //Dialogo d(1);
     return 0;
 }

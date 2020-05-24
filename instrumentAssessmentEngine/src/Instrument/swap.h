@@ -37,14 +37,14 @@ public:
             if(i == zcv.size() - 1){
                 c+=nominal;
             }
-            //zcv[i].pricer(c);
+
             if(i>0){
 
                 dayCountFraction = (1.000 * convencion
                         .compute_daycount_by_convention(zcv[i-1].getFechaPago(), zcv[i].getFechaPago()));
                 dayCountFraction /= convencion.dias_anio() ;
 
-                zcv[i].v_pricer(dayCountFraction,1/maturity_gap,
+                zcv[i].pricer(dayCountFraction,1/maturity_gap,
                         zcv[i-1].getInterest(),i+1, nominal, interesFijoAnual, dayCountFractionAcumulado);
                 dayCountFractionAcumulado += dayCountFraction;
             }
@@ -54,12 +54,12 @@ public:
                         .compute_daycount_by_convention(fechaPresente, zcv[i].getFechaPago()));
                 dayCountFraction /= convencion.dias_anio();
 
-                zcv[i].v_pricer(dayCountFraction,
+                zcv[i].pricer(dayCountFraction,
                         1/maturity_gap,interesEnReset,i+1, nominal, interesFijoAnual, dayCountFractionAcumulado);
                 dayCountFractionAcumulado += dayCountFraction;
             }
-            //this->pv += zcv[i].getPrice();
-            this->pv += zcv[i].getVPrice();
+
+            this->pv += zcv[i].getPrice();
         }
     }
     double getPresentValue(){

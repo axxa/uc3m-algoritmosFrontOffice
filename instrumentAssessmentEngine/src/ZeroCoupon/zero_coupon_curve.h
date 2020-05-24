@@ -38,14 +38,6 @@ class ZerocouponCurve {
             }
 
             this->calibrada = InterpolacionLineal(numericTime, tiposZeroCoupon);
-            /*
-            // Output
-            #define SP << fixed << setw( 15 ) << setprecision( 6 ) <<
-            #define NL << '\n'
-            auto xVals = this->calibrada.getInterpolatedMaturityVector();
-            auto yVals = this->calibrada.getInterpolatedInterestVector();
-            cout << "\nInterpolated data:\n";
-            for ( int i = 0; i < this->calibrada.getInterpolatedMaturityVector().size(); i++ ) cout SP xVals[i] SP yVals[i] NL;*/
 
         }
 

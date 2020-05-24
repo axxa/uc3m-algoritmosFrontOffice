@@ -3,7 +3,7 @@
 #define INSTRUMENTASSESSMENTENGINE_TIR_H
 
 #include <cmath>
-#include "cuponPayment.h"
+#include "cupon.h"
 #include <vector>
 #include <iostream>
 
@@ -12,8 +12,8 @@ template <class T>
 class Tir
 {
     private:
-        vector<cuponPayment> payment;
-        double marketValue;
+        vector<Cupon> pago;
+        double valor;
     public:
         Tir(T convencion, vector<std::tm> fechasPagoZeroCoupon, std::tm fechaReset, vector<double> prices){
             for(int i = 0 ; i < prices.size(); i++){
@@ -38,18 +38,18 @@ class Tir
         }
         double function_x(double interest){
             double ret = 0;
-            for(int i = 0; i<payment.size(); i++)
+            for(int i = 0; i<pago.size(); i++)
             {
-                ret = ret + payment[i].getCouponAmount() * exp(-interest* payment[i].getDateInYears());
+                ret = ret + pago[i].getValue() * exp(-interest* pago[i].getYearCount());
             }
-            ret = ret - marketValue;
+            ret = ret - valor;
             return ret;
         }
         void addCupon(double years, double cupon){
-            payment.push_back(cuponPayment(years,cupon));
+            pago.push_back(Cupon(years,cupon));
         }
         void setMarketValue(double value){
-            marketValue = value;
+            valor = value;
         }
         double function_x_prima(double point){
             double diferential = 0.1;

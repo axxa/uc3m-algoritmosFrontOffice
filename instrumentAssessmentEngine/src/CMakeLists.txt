@@ -14,6 +14,7 @@ add_subdirectory(UnitTest)
 add_executable(instrumentAssessmentEngine main.cpp)
 
 set_target_properties(Instrument PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(zero_coupon PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(PeriodCalc PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(UnitTest PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(Tir PROPERTIES LINKER_LANGUAGE CXX)
