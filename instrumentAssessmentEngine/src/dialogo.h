@@ -80,14 +80,14 @@ class Dialogo {
             cin >>opcionConvencion;
 
             if(opcionConvencion == 1)
-                pv  = bond30_360(fechaReset, fechasZeroCouponString,tiposZeroCoupon,
-                                 nominal, interesFijoAnual,pv, tirValue);
+                bond30_360(fechaReset, fechasZeroCouponString,tiposZeroCoupon,
+                        nominal, interesFijoAnual,pv, tirValue);
             else if(opcionConvencion == 2)
                 bondActual360(fechaReset, fechasZeroCouponString,tiposZeroCoupon,
                         nominal, interesFijoAnual,pv, tirValue);
             else if(opcionConvencion == 3)
-                pv = bondActualActual(fechaReset, fechasZeroCouponString,tiposZeroCoupon,
-                                      nominal, interesFijoAnual,pv, tirValue);
+                bondActualActual(fechaReset, fechasZeroCouponString,tiposZeroCoupon,
+                        nominal, interesFijoAnual,pv, tirValue);
             else{
                 cout<<"Opcion no valida";
                 exit(0);
@@ -135,14 +135,14 @@ class Dialogo {
            cin >>opcionConvencion;
 
            if(opcionConvencion == 1)
-               pv  = swap30_360(fechasZeroCouponString, fechaReset, tiposZeroCoupon,
-                                tipoEnReset, interesFijoAnual, nominal, pv);
+               swap30_360(fechasZeroCouponString, fechaReset, tiposZeroCoupon,
+                       tipoEnReset, interesFijoAnual, nominal, pv);
            else if(opcionConvencion == 2)
-               pv = swapActual360(fechasZeroCouponString, fechaReset, tiposZeroCoupon,
-                                  tipoEnReset, interesFijoAnual, nominal, pv);
+               swapActual360(fechasZeroCouponString, fechaReset, tiposZeroCoupon,
+                       tipoEnReset, interesFijoAnual, nominal, pv);
            else if(opcionConvencion == 3)
-               pv = swapActualActual(fechasZeroCouponString, fechaReset, tiposZeroCoupon,
-                                     tipoEnReset, interesFijoAnual, nominal, pv);
+               swapActualActual(fechasZeroCouponString, fechaReset, tiposZeroCoupon,
+                       tipoEnReset, interesFijoAnual, nominal, pv);
            else{
                cout<<"Opcion no valida";
                exit(0);
@@ -190,7 +190,7 @@ class Dialogo {
            u.showTimeSeries(xVals, yVals);
        }
 
-        double bond30_360(std::string fechaInicial, vector<std::string> fechasZeroCouponString,
+        void bond30_360(std::string fechaInicial, vector<std::string> fechasZeroCouponString,
                           vector<double> tiposZeroCoupon, double nominal, double interesFijoAnual,
                           double &pv, double &tirValue){
             auto convencion = _30_360();
@@ -223,7 +223,7 @@ class Dialogo {
             u.showTimeSeries(xVals, yVals);
         }
 
-        double bondActualActual(std::string fechaInicial, vector<std::string> fechasZeroCouponString,
+        void bondActualActual(std::string fechaInicial, vector<std::string> fechasZeroCouponString,
                                 vector<double> tiposZeroCoupon, double nominal, double interesFijoAnual,
                                 double &pv, double &tirValue){
             auto convencion = Actual_actual();
@@ -256,7 +256,7 @@ class Dialogo {
             u.showTimeSeries(xVals, yVals);
         }
 
-        double swapActual360(vector<std::string> fechasZeroCouponString, std::string fechainicial,
+        void swapActual360(vector<std::string> fechasZeroCouponString, std::string fechainicial,
                 vector<double> tiposZeroCoupon, double tipoEnReset,
                 double interesFijoAnual, double nominal, double &pv){
 
@@ -282,7 +282,7 @@ class Dialogo {
             u.showTimeSeries(xVals, yVals);
        }
 
-    double swapActualActual(vector<std::string> fechasZeroCouponString, std::string fechaReset,
+    void swapActualActual(vector<std::string> fechasZeroCouponString, std::string fechaReset,
                          vector<double> tiposZeroCoupon, double tipoEnReset,
                          double interesFijoAnual, double nominal, double &pv){
 
@@ -308,7 +308,7 @@ class Dialogo {
         u.showTimeSeries(xVals, yVals);
     }
 
-    double swap30_360(vector<std::string> fechasZeroCouponString, std::string fechaReset,
+    void swap30_360(vector<std::string> fechasZeroCouponString, std::string fechaReset,
                             vector<double> tiposZeroCoupon, double tipoEnReset,
                             double interesFijoAnual, double nominal, double &pv){
 
