@@ -31,16 +31,16 @@ void runTest(){
     cout << "El valor de la TIR es: " << tirValue << endl;
 }
 
-void justOne(){
-    Test test(1);
-    auto pv = test.testTema2().getPresentValue();
-
-    cout<< "***testTema2: El valor presente del bono es: " << pv <<"***\n\n";
-}
 
 int main() {
-    //justOne();
-    runTest();
-    //Dialogo d(1);
+    short opcion=0;
+    cout<<"\n1. Correr test\n2. Correr dialogo\nSeleccione una opcion: ";
+    cin>>opcion;
+    if(opcion==1)
+        runTest();
+    else if(opcion==2)
+        Dialogo d(1);
+    else
+        cout<<"Opcion incorrecta";
     return 0;
 }
