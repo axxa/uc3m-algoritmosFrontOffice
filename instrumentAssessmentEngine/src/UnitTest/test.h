@@ -58,7 +58,7 @@ public:
         //vector<double> tiposZeroCoupon{0.048,0.0474, 0.05, 0.051, 0.052};
         vector<std::string> fechasZeroCouponString{"03/10/2016", "03/04/2017", "02/10/2017","02/04/2018"};
         vector<double> tiposZeroCoupon{0.0474, 0.05, 0.051, 0.052};
-        double euriborEnReset = 0.48;
+        double euriborEnReset = 0.048;
         double interesFijoAnual = 0.05;
         double nominal = 100;
         //---------------------------------------------------------------------
@@ -76,6 +76,40 @@ public:
         //------------------------------------------------------------------------------------------------
 
         Swap<Actual_360> swap("swap", nominal, zcc, interesFijoAnual, fechainicial, euriborEnReset);
+        swap.pricer();
+
+        auto xVals = zcc.getCalibrada().getInterpolatedMaturityVector();
+        auto yVals = zcc.getCalibrada().getInterpolatedInterestVector();
+        utils u(1);
+        u.showTimeSeries(xVals, yVals);
+
+        return swap.getPresentValue();
+    }
+
+    double testSwapActualActual(){
+        //Datos basicos del bono-------------------------------------------------------
+        //vector<std::string> fechasZeroCouponString{"01/04/2016","03/10/2016", "03/04/2017", "02/10/2017","02/04/2018"};
+        //vector<double> tiposZeroCoupon{0.048,0.0474, 0.05, 0.051, 0.052};
+        vector<std::string> fechasZeroCouponString{"02/10/2017","02/04/2018"};
+        vector<double> tiposZeroCoupon{0.0474, 0.05};
+        double euriborEnReset = 0.035;
+        double interesFijoAnual = 0.07;
+        double nominal = 100;
+        //---------------------------------------------------------------------
+
+
+        std::string fechafinal = fechasZeroCouponString[fechasZeroCouponString.size()-1];
+        vector<std::tm> fechasPagoZeroCoupon;
+
+        //-----------construir la curva cero cupon--------------------------------------------------------
+        auto convencion_360 = Actual_actual();
+        std::tm fechainicial = convencion_360.make_date("03/04/2017");
+        for (auto element : fechasZeroCouponString)
+            fechasPagoZeroCoupon.push_back(convencion_360.make_date(element));
+        ZerocouponCurve<Actual_actual> zcc(convencion_360, fechasPagoZeroCoupon, tiposZeroCoupon);
+        //------------------------------------------------------------------------------------------------
+
+        Swap<Actual_actual> swap("swap", nominal, zcc, interesFijoAnual, fechainicial, euriborEnReset);
         swap.pricer();
 
         auto xVals = zcc.getCalibrada().getInterpolatedMaturityVector();

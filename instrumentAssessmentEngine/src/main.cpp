@@ -25,6 +25,8 @@ void runTest(){
     cout<< "***testBond30_360: El valor presente del bono es: " << pv <<"***\n\n";
     pv = test.testTema2Swap();
     cout<< "***testTema2Swap: El valor presente del swap es: " << pv <<"***\n\n";
+    pv = test.testSwapActualActual();
+    cout<< "***testSwapActualActual: El valor presente del swap es: " << pv <<"***\n\n";
     auto tirValue = test.testTir();
     cout << "El valor de la TIR es: " << tirValue << endl;
 }
