@@ -35,6 +35,8 @@
 */build
 **/cmake-build-debug
 **/cmakecompilation
+**/.vs
+**/out
 # IDEs and editors
 /.idea
 */.idea
